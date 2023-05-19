@@ -28,10 +28,10 @@ def scan_changed_files_for_blacklisted_words(pr_number):
         filename = file['filename']
         patch_url = file['raw_url']
         lines = get_changed_lines_from_patch(patch_url)
-
+        logging.info("changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
-
+            logging.info("Analysing line in lower case - %s", line)
             for word in blacklisted_words:
                 if word in line:
                     findings.append({
