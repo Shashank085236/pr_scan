@@ -48,6 +48,7 @@ def get_changed_lines_from_patch(patch_url):
     response = requests.get(patch_url)
     response.raise_for_status()
     patch_content = response.text
+    logging.info("content - %s", patch_content)
 
     lines = []
     current_line_number = None
