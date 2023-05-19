@@ -1,1 +1,1 @@
-String passwd = "secret";
+String pass = "secret";
