@@ -1,5 +1,9 @@
 import os
 import requests
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 blacklisted_words = ['password', 'secret', 'admin']  # Example list of blacklisted words
 
@@ -64,14 +68,14 @@ def get_changed_lines_from_patch(patch_url):
 
 
 # Usage example
-# pr_number = os.environ['PR_NUMBER']  # Get the PR number from the environment variable
+pr_number = os.environ['PR_NUMBER']
 
-# findings = scan_changed_files_for_blacklisted_words(pr_number)
+findings = scan_changed_files_for_blacklisted_words(pr_number)
 
 # Output the findings
-# if findings:
-#    print('Blacklisted words found:')
-#    for finding in findings:
-#        print(f"- File: {finding['file']}, Line: {finding['line']}, Word: {finding['word']}")
-# else:
-#     print('No blacklisted words found.')
+if findings:
+    print('Blacklisted words found:')
+    for finding in findings:
+        print(f"- File: {finding['file']}, Line: {finding['line']}, Word: {finding['word']}")
+else:
+    print('No blacklisted words found.')
