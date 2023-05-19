@@ -31,7 +31,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
         logging.info("changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
-            logging.info("Analysing line in lower case - %s", line)
+            logging.info("Analysing line in lower case - %s", linen)
             for word in blacklisted_words:
                 if word in line:
                     findings.append({
