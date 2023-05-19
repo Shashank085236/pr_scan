@@ -12,6 +12,8 @@ def scan_changed_files_for_blacklisted_words(pr_number):
     logging.info(pr_number)
     repo = os.environ['GITHUB_REPOSITORY']
     token = os.environ['GITHUB_TOKEN']
+    logging.info("Recieved token - %s", token)
+    logging.info("Repo - %s", repo)
 
     headers = {'Authorization': f'token {token}'}
     url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/files'
@@ -41,6 +43,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
 
 
 def get_changed_lines_from_patch(patch_url):
+    logging.info("patch_url: %s", patch_url)
     response = requests.get(patch_url)
     response.raise_for_status()
     patch_content = response.text
