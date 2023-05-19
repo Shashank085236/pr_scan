@@ -9,6 +9,7 @@ blacklisted_words = ['password', 'secret', 'admin']  # Example list of blacklist
 
 
 def scan_changed_files_for_blacklisted_words(pr_number):
+    logging.info(pr_number)
     repo = os.environ['GITHUB_REPOSITORY']
     token = os.environ['GITHUB_TOKEN']
 
