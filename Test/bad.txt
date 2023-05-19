@@ -1,1 +1,3 @@
 I am a bad file having admin access. Keep the secret.
+password
+secret
