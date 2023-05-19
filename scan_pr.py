@@ -26,7 +26,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
 
     for file in files:
         filename = file['filename']
-        patch_url = file['patch']
+        patch_url = file['raw_url']
         lines = get_changed_lines_from_patch(patch_url)
 
         for line_number, line in lines:
