@@ -22,4 +22,4 @@ jobs:
       - name: Scan PR for blacklisted words
         run: |
           python -m pip install requests
-          python mypythonscript.py
+          python scan_pr.py
