@@ -19,7 +19,8 @@ jobs:
         with:
           python-version: '3.11'  # Replace '3.x' with your desired Python version
 
-      - name: Scan PR for blacklisted words
-        run: |
-          python -m pip install requests
-          python scan_pr.py
+      - name: Install requests dependencies
+        run: python -m pip install requests
+      
+      - name: Scan PR     
+        run: python scan_pr.py
