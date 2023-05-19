@@ -1,2 +1,1 @@
-I am a bad file having admin access. Keep the secret!
-Can You catch me?
+I am a bad file having admin access. Keep the secret..
