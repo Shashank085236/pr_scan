@@ -20,6 +20,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     files = response.json()
+    logging.info(files);
 
     findings = []
 
