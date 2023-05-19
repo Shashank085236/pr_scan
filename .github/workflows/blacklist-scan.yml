@@ -5,7 +5,9 @@ on:
     types:
       - opened
       - synchronize
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
 jobs:
   scan:
     runs-on: ubuntu-latest
