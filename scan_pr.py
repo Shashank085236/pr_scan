@@ -80,7 +80,7 @@ if findings:
     print('Blacklisted words found:')
     for finding in findings:
         print(f"- File: {finding['file']}, Line: {finding['line']}, Word: {finding['word']}")
-        return 1
+    return 1
 else:
     print('No blacklisted words found.')
     return 0
