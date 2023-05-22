@@ -49,25 +49,13 @@ def get_changed_lines_from_patch(patch_url):
     patch_content = response.text
     logging.info("content - %s", patch_content)
 
-    lines = []
-    current_line_number = 0
+    # Process the patch content to extract the changed lines
+    changed_lines = []
+    for line in patch_content.splitlines():
+        if line.startswith("+"):
+            changed_lines.append(line)
 
-    for line in patch_content.split('\n'):
-        if line.startswith('@@'):
-            # Extract the start line number information from the patch header
-            _, line_info = line.split('@@', 1)
-            line_numbers = line_info.split()[0]
-            start_line_number, _ = map(int, line_numbers.split(','))
-            current_line_number = start_line_number
-        elif line.startswith('+'):
-            # Add the changed line to the list
-            lines.append((current_line_number, line[1:]))
-            current_line_number += 1
-        elif line.startswith('-'):
-            # Skip deleted lines
-            current_line_number += 1
-
-    return lines
+    return changed_lines
 
 
 # Usage example
