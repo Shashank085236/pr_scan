@@ -13,4 +13,4 @@ Fortify has process for auditor review.
 - Synk is better if we want top down approach fixing focused and priority items first
 - Fortify reports much more vulnerability than Snyk but there are many false positives as well. Accuracy of Snyk appears better
 - Synk scans to find vuln in PR fails many times and they recommened closing and raising PR again
-- password here
+-  password secret
