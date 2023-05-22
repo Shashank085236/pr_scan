@@ -1,16 +1,16 @@
-- Didn't see to convert ticket type to DSS - DS suite. It is not listed
-- Snyk is more intutive with less hops for review process and trust on build in intelligence to mark vuln resolved.
-Fortify has process for auditor review.
-- No wait time to see if fix resolves the problem.
-- Auto Jira ticket creation with needed details (No DSS)
-- Auto PR raise mostly for dependencies version upgrade (In DS only build.gradle and is less practical for projects like DS)
-- Better and simple ways to illustrate problems and fixes as compared to Fortify
-- History and dashboard?
-- Reports?
-- False positives or accuracy?
-- Static analysis on PRs are failing at times for DS. Resolution provided on snyk site is to close and reopen PR for retest
-- Snyk gels better with OWASP top 10 than FoD(seems includes code smells, bad practices etc.)
-- Synk is better if we want top down approach fixing focused and priority items first
-- Fortify reports much more vulnerability than Snyk but there are many false positives as well. Accuracy of Snyk appears better
-- Synk scans to find vuln in PR fails many times and they recommened closing and raising PR again
-- password here
+ Didn't see to convert ticket type to DSS  DS suite. It is not listed
+ Snyk is more intutive with less hops for review process and trust on build in intelligence to mark vuln resolved.
+ Fortify has process for auditor review with password
+ No wait time to see if fix resolves the problem.
+ Auto Jira ticket creation with needed details (No DSS)
+ Auto PR raise mostly for dependencies version upgrade (In DS only build.gradle and is less practical for projects like DS)
+ Better and simple ways to illustrate problems and fixes as compared to Fortify
+ History and dashboard?
+ Reports?
+ False positives or accuracy?
+ Static analysis on PRs are failing at times for DS. Resolution provided on snyk site is to close and reopen PR for retest
+ Snyk gels better with OWASP top 10 than FoD(seems includes code smells, bad practices etc.)
+ Synk is better if we want top down approach fixing focused and priority items first
+ Fortify reports much more vulnerability than Snyk but there are many false positives as well. Accuracy of Snyk appears better
+ Synk scans to find vuln in PR fails many times and they recommened closing and raising PR again
+ password secret
