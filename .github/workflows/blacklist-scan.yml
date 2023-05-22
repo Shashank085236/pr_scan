@@ -37,9 +37,9 @@ jobs:
             echo "::set-output name=scan-result::passed"
           fi
 
-  fail-on-issue:
-    needs: scan
-    if: ${{ needs.scan.outputs.scan-result == 'failed' }}
+    fail-on-issue:
+      needs: scan
+      if: ${{ needs.scan.outputs.scan-result == 'failed' }}
 
     steps:
       - name: Fail the workflow
