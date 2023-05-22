@@ -50,7 +50,7 @@ def get_changed_lines_from_patch(patch_url):
     logging.info("content - %s", patch_content)
 
     lines = []
-    current_line_number = None
+    current_line_number = 0
 
     for line in patch_content.split('\n'):
         if line.startswith('@@'):
