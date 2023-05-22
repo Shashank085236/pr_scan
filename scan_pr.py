@@ -26,8 +26,8 @@ def scan_changed_files_for_blacklisted_words(pr_number):
 
     for file in files:
         filename = file['filename']
-        patch_url = file['patch']
-        lines = get_changed_lines_from_patch(patch_url)
+        patch_content = file['patch']
+        lines = get_changed_lines_from_patch(patch_content)
         logging.info("changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
@@ -42,20 +42,32 @@ def scan_changed_files_for_blacklisted_words(pr_number):
     return findings
 
 
-def get_changed_lines_from_patch(patch_url):
-    response = requests.get(patch_url)
-    response.raise_for_status()
-    patch_content = response.text
+def get_changed_lines_from_patch(patch_content):
+    #response = requests.get(patch_url)
+    #response.raise_for_status()
+    #patch_content = response.text
     logging.info("content - %s", patch_content)
 
     # Process the patch content to extract the changed lines
-    changed_lines = []
-    for line in patch_content.splitlines():
-        logging.info("line - %s", line)
-        if line.startswith("+"):
-            changed_lines.append(line)
+    lines = []
+    current_line_number = 0
 
-    return changed_lines
+    for line in patch_content.split('\n'):
+        if line.startswith('@@'):
+            # Extract the start line number information from the patch header
+            _, line_info = line.split('@@', 1)
+            line_numbers = line_info.split()[0]
+            start_line_number, _ = map(int, line_numbers.split(','))
+            current_line_number = start_line_number
+        elif line.startswith('+'):
+            # Add the changed line to the list
+            lines.append((current_line_number, line[1:]))
+            current_line_number += 1
+        elif line.startswith('-'):
+            # Skip deleted lines
+            current_line_number += 1
+
+    return lines
 
 
 # Usage example
