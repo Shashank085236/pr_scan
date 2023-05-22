@@ -31,7 +31,6 @@ def scan_changed_files_for_blacklisted_words(pr_number):
         logging.info("changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
-            logging.info("Analysing line in lower case - %s", line)
             for word in blacklisted_words:
                 if word in line:
                     findings.append({
@@ -52,6 +51,7 @@ def get_changed_lines_from_patch(patch_url):
     # Process the patch content to extract the changed lines
     changed_lines = []
     for line in patch_content.splitlines():
+        logging.info("line - %s", line)
         if line.startswith("+"):
             changed_lines.append(line)
 
