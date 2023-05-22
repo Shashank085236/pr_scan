@@ -1,6 +1,7 @@
 import os
 import requests
 import logging
+import sys
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -12,7 +13,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
     logging.info(pr_number)
     repo = os.environ['GITHUB_REPOSITORY']
     token = os.environ['GITHUB_TOKEN']
-    logging.info("Recieved token - %s", token)
+    logging.info("Received token - %s", token)
     logging.info("Repo - %s", repo)
 
     headers = {'Authorization': f'token {token}'}
@@ -20,7 +21,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     files = response.json()
-    logging.info(files);
+    logging.info(files)
 
     findings = []
 
@@ -28,7 +29,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
         filename = file['filename']
         patch_content = file['patch']
         lines = get_changed_lines_from_patch(patch_content)
-        logging.info("changed lines - %s", lines)
+        logging.info("Changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
             for word in blacklisted_words:
@@ -43,10 +44,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
 
 
 def get_changed_lines_from_patch(patch_content):
-    #response = requests.get(patch_url)
-    #response.raise_for_status()
-    #patch_content = response.text
-    logging.info("content - %s", patch_content)
+    logging.info("Content - %s", patch_content)
 
     # Process the patch content to extract the changed lines
     lines = []
@@ -80,7 +78,7 @@ if findings:
     print('Blacklisted words found:')
     for finding in findings:
         print(f"- File: {finding['file']}, Line: {finding['line']}, Word: {finding['word']}")
-    return 1
+    sys.exit(1)
 else:
     print('No blacklisted words found.')
-    return 0
+    sys.exit(0)
