@@ -6,22 +6,19 @@ import sys
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-blacklisted_words = ['password', 'secret', 'admin']  # Example list of blacklisted words
+blacklisted_words = ['password', 'secret', 'admin', 'rm -rf', 'rm ', 'rmdir', 'rm -f', 'delete', 'remove', 'credential']
 
-
-def scan_changed_files_for_blacklisted_words(pr_number):
-    logging.info(pr_number)
+def scan_changed_files_for_blacklisted_words(pr_num):
+    logging.info("PR - %s", pr_num)
     repo = os.environ['GITHUB_REPOSITORY']
     token = os.environ['GITHUB_TOKEN']
-    logging.info("Received token - %s", token)
-    logging.info("Repo - %s", repo)
 
     headers = {'Authorization': f'token {token}'}
-    url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/files'
+    url = f'https://api.github.com/repos/{repo}/pulls/{pr_num}/files'
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     files = response.json()
-    logging.info(files)
+    # logging.info(files)
 
     findings = []
 
@@ -29,7 +26,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
         filename = file['filename']
         patch_content = file['patch']
         lines = get_changed_lines_from_patch(patch_content)
-        logging.info("Changed lines - %s", lines)
+        # logging.info("Changed lines - %s", lines)
         for line_number, line in lines:
             line = line.lower()
             for word in blacklisted_words:
@@ -44,7 +41,7 @@ def scan_changed_files_for_blacklisted_words(pr_number):
 
 
 def get_changed_lines_from_patch(patch_content):
-    logging.info("Content - %s", patch_content)
+    # logging.info("Content - %s", patch_content)
 
     # Process the patch content to extract the changed lines
     lines = []
