@@ -6,7 +6,7 @@ Fortify has process for auditor review.
 - Auto PR raise mostly for dependencies version upgrade (In DS only build.gradle and is less practical for projects like DS)
 - Better and simple ways to illustrate problems and fixes as compared to Fortify
 - History and dashboard?
-- Reports?
+- Reports? don't delete please
 - False positives or accuracy?
 - Static analysis on PRs are failing at times for DS. Resolution provided on snyk site is to close and reopen PR for retest
 - Snyk gels better with OWASP top 10 than FoD(seems includes code smells, bad practices etc.)
