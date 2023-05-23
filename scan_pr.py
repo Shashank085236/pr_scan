@@ -41,7 +41,7 @@ def scan_changed_files_for_blacklisted_words(pr_num):
 
 
 def get_changed_lines_from_patch(patch_content):
-    # logging.info("Content - %s", patch_content)
+    logging.info("Content - %s", patch_content)
 
     # Process the patch content to extract the changed lines
     lines = []
@@ -56,6 +56,7 @@ def get_changed_lines_from_patch(patch_content):
             current_line_number = start_line_number
         elif line.startswith('+'):
             # Add the changed line to the list
+            logging.info("appending line - %s", line)
             lines.append((current_line_number, line[1:]))
             current_line_number += 1
         elif line.startswith('-'):
